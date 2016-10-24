@@ -10,6 +10,10 @@ $(document).ready(function(){
     [1, 5, 9],
     [3, 5, 7]
   ];
+  // console.log(wins);
+  // var typeOfWins = typeof(wins[1][1]);
+  // console.log(typeOfWins);
+
   var availableSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   var xPlays = [];
   var oPlays = [];
@@ -35,15 +39,27 @@ $(document).ready(function(){
 
     //and push it to the xplays array
     xPlays.push(num);
+    xPlays.sort(function(a, b){return a-b}); //sort it - not sure if we need this.
     console.log(xPlays);
+    console.log(wins);
 
     //increment the turn
     turn ++; 
     console.log(turn);
 
     //if turn > 5
-      //check to see whether xplays array is equal to any of the arrays in wins 
-      //if so, game over X wins. 
+    // if (turn >=5) {
+      var indexOfX = wins.indexOf(xPlays);
+      console.log(indexOfX);
+
+
+      // check to see whether xplays array is equal to any of the arrays in wins 
+      // if so, game over X wins. 
+      //if X has had 3 turns and they are a win
+      //if X has had 3 turn and they are not a win
+      //if X has had more than 3 turns before they win. 
+    // }
+      
     //NOW IT IS THE BROWSER'S TURN
 
       //delay for a second or two
