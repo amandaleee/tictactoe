@@ -10,9 +10,16 @@ $(document).ready(function(){
     [1, 5, 9],
     [3, 5, 7]
   ];
-  // console.log(wins);
-  // var typeOfWins = typeof(wins[1][1]);
-  // console.log(typeOfWins);
+
+  //creates a method on Array object so we can find an array within an array - this is pure StackOverflow work, but it made the most sense. 
+
+  Array.prototype.containsArray = function(val) {
+    var hash = {};
+    for(var i=0; i<this.length; i++) {
+      hash[this[i]] = i;
+    }
+    return hash.hasOwnProperty(val);
+  } 
 
   var availableSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   var xPlays = [];
@@ -40,28 +47,27 @@ $(document).ready(function(){
     //and push it to the xplays array
     xPlays.push(num);
     xPlays.sort(function(a, b){return a-b}); //sort it - not sure if we need this.
-    console.log(xPlays);
+    console.log(xPlays); //
     console.log(wins);
 
     //increment the turn
     turn ++; 
-    console.log(turn);
+    console.log(turn); //works 
 
-    //if turn > 5
-    // if (turn >=5) {
-      var indexOfX = wins.indexOf(xPlays);
+    //if the user has taken more than 3 turns 
+    if (turn >=3 ) {
+
+      var indexOfX = wins.containsArray(xPlays); //this is neato
       console.log(indexOfX);
-
-
-      // check to see whether xplays array is equal to any of the arrays in wins 
-      // if so, game over X wins. 
-      //if X has had 3 turns and they are a win
-      //if X has had 3 turn and they are not a win
-      //if X has had more than 3 turns before they win. 
-    // }
+      if (indexOfX === true) {
+        alert("you win");
+        //x wins, are we keeping track of how many wins? 
+        //localstorage 
+      }
+      // TO FIX: if X has had more than 3 turns before they win, this doesn't work. 
+    }
       
     //NOW IT IS THE BROWSER'S TURN
-
       //delay for a second or two
       //generate a random number betwee 1 and 9
       //append that to square and get element with class of square-* on it
