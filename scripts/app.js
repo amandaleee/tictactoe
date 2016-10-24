@@ -18,20 +18,34 @@ $(document).ready(function(){
 //assuming the user goes first
   $(".square").click(function(){
     //IT IS THE USER'S TURN
-    $(this).text("X");
+    //check whether this square already has something in it. 
+    if ($.trim($(this).html())=='') {
+      $(this).text("X");
+    } else {
+      alert("nope");
+    }
+    
     var classlist = $(this).attr("class").split(' ');
     var classnumber = classlist[classlist.length-1];
     var num = parseInt(classnumber.split("-").pop());//refactor these last two lines to be one.
-    
+  
+    //find it within the availablesquares array, and get rid of it
+    var index = availableSquares.indexOf(num);
+    availableSquares.splice(index, 1);
 
-    //get the number off the square class here and push is to the x array
-    //and remove it from the availableSquares array
     //and push it to the xplays array
-    //turn ++; 
+    xPlays.push(num);
+    console.log(xPlays);
+
+    //increment the turn
+    turn ++; 
+    console.log(turn);
+
     //if turn > 5
       //check to see whether xplays array is equal to any of the arrays in wins 
       //if so, game over X wins. 
     //NOW IT IS THE BROWSER'S TURN
+
       //delay for a second or two
       //generate a random number betwee 1 and 9
       //append that to square and get element with class of square-* on it
