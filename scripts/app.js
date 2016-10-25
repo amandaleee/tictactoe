@@ -20,6 +20,14 @@ $(document).ready(function(){
     return hash.hasOwnProperty(val);
   } 
 
+  //
+  Array.prototype.arrayIntersect = function()
+  array1.filter(function(n) {
+    return array2.indexOf(n) != -1;
+  }
+
+  
+
   // function to generate a random number for the browser's turn. 
   function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -93,7 +101,7 @@ $(document).ready(function(){
     console.log(turn); //works 
 
     //if the user has taken more than 3 turns 
-    if (turn >=3 ) {
+    if (turn =3 ) {
 
       var indexOfX = wins.containsArray(xPlays); //this is neato
       console.log(indexOfX);
@@ -101,8 +109,10 @@ $(document).ready(function(){
         alert("the browser wins");
         //x wins, are we keeping track of how many wins? possibly in localstorage? 
       }
-      // TO FIX: if X has had more than 3 turns before they win, this doesn't work. 
+    } else if (turn > 3) {
+
     }
+    // TO FIX: if X has had more than 3 turns before they win, this doesn't work.
       
     //NOW IT IS THE BROWSER'S TURN
     setTimeout(browsersTurn, 1000)
