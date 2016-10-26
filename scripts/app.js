@@ -19,14 +19,14 @@ $(document).ready(function(){
     }
     return hash.hasOwnProperty(val);
   } 
-
-  function arrayContainsAnotherArray(needle, haystack){
-    for (var i = 0; i < haystack.length; i++) { //for each element in needle, each of which is an array
-      if (haystack.indexOf(needle[i] === -1)){ //if the element's index within haystack is -1
-        return false; //return false --> haystack does not contain needle. 
-      }
-    }
-  }
+  //todo: fix this
+  // function arrayContainsAnotherArray(needle, haystack){
+  //   for (var i = 0; i < haystack.length; i++) { //for each element in needle, each of which is an array
+  //     if (haystack.indexOf(needle[i] === -1)){ //if the element's index within haystack is -1
+  //       return false; //return false --> haystack does not contain needle. 
+  //     }
+  //   }
+  // }
 
 
 
@@ -63,33 +63,35 @@ $(document).ready(function(){
     
     if (turn === 2 ) {
       var indexOfO = wins.containsArray(oPlays); //this works pretty well
-      console.log(indexOfO);
+      console.log("True or false, O has won " + indexOfO);
       if (indexOfO === true) {
         alert("the browser wins! try again!");
       }
-      // TO FIX: if O has had more than 3 turns before they win, this doesn't work. 
-    } else if (turn >= 3) {
-      for (i = 0; i <= wins.length; i++) {
-        var winCondition = wins[i];
-        console.log(winCondition);        
-        var winning = arrayContainsAnotherArray(winCondition, oPlays);
-        console.log("It is " + winning + " that the browser is winning with the " + winCondition + " condition");
-        if (winning) {
-          alert("the browser wins! try again!");
-          return;
-        }
-      }
-    }
+    } 
+    // else if (turn >= 3) {
+    //   for (i = 0; i <= wins.length; i++) {
+    //     var winCondition = wins[i];
+    //     console.log(winCondition);        
+    //     var winning = arrayContainsAnotherArray(winCondition, oPlays);
+    //     console.log("It is " + winning + " that the browser is winning with the " + winCondition + " condition");
+    //     if (winning) {
+    //       alert("the browser wins! try again!");
+    //       return;
+    //     }
+    //   }
+    // }
   }
 
 
   //the user goes first
 
   $(".square").click(function(){
+    console.log(turn + "is the");
     //IT IS THE USER'S TURN
     //check whether this square already has something in it. 
     if ($.trim($(this).html())=='') {
       $(this).text("X");
+
       $(".turn-display").text("It's the browser's turn!");
     } else {
       alert("nope");//fix and do something funny here
@@ -105,15 +107,17 @@ $(document).ready(function(){
 
     //and push it to the xplays array
     xPlays.push(userChoice);
+    console.log(xPlays + " is what X has played");
     xPlays.sort(function(a, b){return a-b}); //sort it - not sure if we need this.
 
     //increment the turn
     turn ++; 
 
-    //if the user has taken more than 3 turns 
+    //if the user has taken 3 turns 
     if (turn === 2 ) {
-      var indexOfX = wins.containsArray(xPlays); //this is neato
-      console.log(indexOfX);
+      var indexOfX = wins.containsArray(xPlays);
+      console.log("True or false, X has won: " + indexOfX);
+      
       if (indexOfX === true) {
         console.log("the user wins");
         alert("you win");
@@ -123,15 +127,15 @@ $(document).ready(function(){
         }
       }
     } 
-    else if (turn >= 3) {
-      for (i = 0; i < wins.length; i++) {
-        var winCondition = wins[i];
-        console.log("checking win condition " + winCondition);        
-        var winning = arrayContainsAnotherArray(winCondition, xPlays);
-        console.log("It is " + winning + " that the user is winning with the " + winCondition + " condition");
-        //todo - get the win condition working here
-      }
-    }
+    // else if (turn >= 3) {
+    //   for (i = 0; i < wins.length; i++) {
+    //     var winCondition = wins[i];
+    //     console.log("checking win condition " + winCondition);        
+    //     var winning = arrayContainsAnotherArray(winCondition, xPlays);
+    //     console.log("It is " + winning + " that the user is winning with the " + winCondition + " condition");
+    //     //todo - get the win condition working here
+    //   }
+    // }
       
     //NOW IT IS THE BROWSER'S TURN
     setTimeout(browsersTurn, 500)

@@ -1,42 +1,51 @@
 body {
-  background: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 40px, rgba(0, 0, 0, 0.8) 40px, rgba(0, 0, 0, 0.8) 80px), url(../img/grunge.png);
+  background: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 40px, rgba(0, 0, 0, 0.7) 40px, rgba(0, 0, 0, 0.7) 80px), url(../img/grunge.png);
   background-position-x: initial;
   background-size: cover;
   background-repeat-x: repeat;
-  background-repeat-y: repeat; }
+  background-repeat-y: repeat;
+  font-family: 'Taviraj', serif; }
 
 .container {
   width: 90%;
-  max-width: 480px;
+  max-width: 500px;
   margin: auto;
   display: block; }
 
 .instructions {
   width: 100%;
+  font-size: 30px;
   text-align: center;
   margin-bottom: 1rem;
-  color: #fff;
-  text-shadow: 1px 1px 2px black; }
+  color: #ffea00;
+  text-shadow: 0px 0px 26px black; }
+  @media all and (max-width: 768px) {
+    .instructions {
+      font-size: 16px; } }
 
 .board {
-  width: 300px;
-  height: 300px;
+  width: 316px;
+  height: 316px;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   margin: 0 auto 1rem;
-  background-color: #fff; }
+  background-color: #000; }
   .board .square {
-    width: 33.3%;
+    width: 100px;
+    height: 100px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    border: 1px solid black;
-    height: 100px;
-    float: left; }
+    float: left;
+    margin-bottom: .5rem;
+    background-color: #fff; }
+    .board .square:nth-child(3n-1) {
+      margin-left: .5rem;
+      margin-right: .5rem; }
 
 .your-turn {
-  width: 300px;
+  width: 316px;
   margin: auto;
   background-color: #000;
   color: #fff;
