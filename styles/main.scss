@@ -1,16 +1,20 @@
 body {
   background: repeating-linear-gradient(
-  to right,
-  rgba(0, 0, 0, 0.2),
-  rgba(0, 0, 0, 0.2) 40px,
-  rgba(0, 0, 0, 0.8) 40px,
-  rgba(0, 0, 0, 0.8) 80px
-),
-url(../img/grunge.png); 
+    to right,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 40px,
+    rgba(0, 0, 0, 0.8) 40px,
+    rgba(0, 0, 0, 0.8) 80px
+  ), url(../img/grunge.png); 
   background-position-x: initial;
   background-size: cover;
   background-repeat-x: repeat;
   background-repeat-y: repeat;
+  -webkit-box-shadow: inset 0px 0px 10vh 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 10vh 0px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 0px 10px 0vh rgba(0,0,0,0.75);
+
+
 }
 
 .container {
