@@ -20,13 +20,16 @@ $(document).ready(function(){
     return hash.hasOwnProperty(val);
   } 
 
-  //
-  Array.prototype.arrayIntersect = function()
-  array1.filter(function(n) {
-    return array2.indexOf(n) != -1;
+  function arrayContainsAnotherArray(needle, haystack){
+    for (var i = 0; i < needle.length; i++) { //for each element in needly
+      if (haystack.indexOf(needle[i] === -1)){ //if the element's index within haystack is -1
+        return false; //return false --> haystack does not contain needle. 
+      }
+    }
   }
 
-  
+
+
 
   // function to generate a random number for the browser's turn. 
   function getRandomIntInclusive(min, max) {
@@ -43,11 +46,11 @@ $(document).ready(function(){
   //setting up the browser's turn as its own function
   var browsersTurn = function(){
     var browsersSquareNumber = getRandomIntInclusive(1, availableSquares.length); 
-    console.log(browsersSquareNumber + " is the number the browser is picking w random");
-    var browserChoice = availableSquares[browsersSquareNumber];
+    console.log(browsersSquareNumber + " is the number the browser is picking at random");
+    var browserChoice = availableSquares[browsersSquareNumber-1]; //friggin' off-by-one omg
     console.log(availableSquares[browsersSquareNumber] + " is the box the browser is picking from the availableSquares array");
     var $browserSquare = $(".square-" + browserChoice);
-    // console.log($browserSquare + " is the browsersquare");
+    // console.log($browserSquare + " is the browsersquare"); 
     $browserSquare.text("O");
     $(".turn-display").text("It's your turn!");
 
@@ -65,9 +68,16 @@ $(document).ready(function(){
       var indexOfO = wins.containsArray(oPlays); //this is neato
       console.log(indexOfO);
       if (indexOfO === true) {
-        alert("you win");
+        console.log("you win");
       }
       // TO FIX: if O has had more than 3 turns before they win, this doesn't work. 
+    } else if (turn > 3) {
+      for (i = 0; i <= wins.length; i++) {
+        var winCondition = wins[i];
+        console.log(winCondition);        
+        var winning = arrayContainsAnotherArray(winCondition, oPlays);
+        console.log("It is " + winning + " that the browser is winning with the " + winCondition + " condition");
+      }
     }
   }
 
@@ -101,21 +111,26 @@ $(document).ready(function(){
     console.log(turn); //works 
 
     //if the user has taken more than 3 turns 
-    if (turn =3 ) {
-
+    if (turn === 3 ) {
       var indexOfX = wins.containsArray(xPlays); //this is neato
       console.log(indexOfX);
       if (indexOfX === true) {
-        alert("the browser wins");
+        console.log("the user wins");
         //x wins, are we keeping track of how many wins? possibly in localstorage? 
       }
-    } else if (turn > 3) {
-
+    } 
+    else if (turn > 3) {
+      for (i = 0; i <= wins.length; i++) {
+        var winCondition = wins[i];
+        console.log(winCondition);        
+        var winning = arrayContainsAnotherArray(winCondition, xPlays);
+        console.log("It is " + winning + " that the user is winning with the " + winCondition + " condition");
+      }
     }
-    // TO FIX: if X has had more than 3 turns before they win, this doesn't work.
       
     //NOW IT IS THE BROWSER'S TURN
     setTimeout(browsersTurn, 1000)
+    //todo - if a user clicks another square during this settimeout, make it do nothing. 
 
   });
 
