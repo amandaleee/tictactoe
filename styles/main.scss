@@ -1,7 +1,35 @@
+body {
+  background: repeating-linear-gradient(
+  to right,
+  rgba(0, 0, 0, 0.2),
+  rgba(0, 0, 0, 0.2) 40px,
+  rgba(0, 0, 0, 0.8) 40px,
+  rgba(0, 0, 0, 0.8) 80px
+),
+url(../img/grunge.png); 
+  background-position-x: initial;
+  background-size: cover;
+  background-repeat-x: repeat;
+  background-repeat-y: repeat;
+}
+
+.container {
+  width: 90%; 
+  max-width: 480px; 
+  margin: auto; 
+  display: block; 
+
+}
+
+
+
 .instructions {
-  width: 300px; 
+  width: 100%;  
   text-align: center; 
   margin-bottom: 1rem;
+  color: #fff; 
+  text-shadow: 1px 1px 2px black; 
+
 }
 .board {
   width: 300px;
@@ -9,7 +37,9 @@
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
+  background-color: #fff;
+
   .square {
     width: 33.3%;
      box-sizing: border-box;
@@ -22,6 +52,7 @@
 }
 .your-turn {
   width: 300px; 
+  margin: auto; 
   background-color: #000; 
   color: #fff; 
   font-weight: bold;
